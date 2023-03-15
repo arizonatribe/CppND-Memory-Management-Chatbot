@@ -42,11 +42,69 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
+// Implements a copy-ownership policy here of "exclusive ownership"
+ChatBot::ChatBot(ChatBot &source)
+{
+    std::cout << "ChatBot Copy Constructor" << std::endl;
 
-////
-//// EOF STUDENT CODE
+    _image = source.GetImageHandle();
+    _chatLogic = source.GetChatLogicHandle();
+    _rootNode = source._rootNode;
+
+    source._image = NULL;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+}
+
+// Implements a copy-ownership policy here of "exclusive ownership"
+ChatBot &ChatBot::operator=(ChatBot &source)
+{
+    std::cout << "ChatBot Copy Assignment" << std::endl;
+
+    _image = source.GetImageHandle();
+    _chatLogic = source.GetChatLogicHandle();
+    _rootNode = source._rootNode;
+
+    source._image = NULL;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+
+    return *this;
+}
+
+ChatBot::ChatBot(ChatBot &&source)
+{
+    std::cout << "ChatBot Move Constructor" << std::endl;
+
+    if (this == &source)
+        return;
+
+    _image = source.GetImageHandle();
+    _chatLogic = source.GetChatLogicHandle();
+    _rootNode = source._rootNode;
+
+    source._image = NULL;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+}
+
+ChatBot &ChatBot::operator=(ChatBot &&source)
+{
+    std::cout << "ChatBot Move Assignment" << std::endl;
+
+    if (this == &source)
+        return *this;
+
+    _image = source.GetImageHandle();
+    _chatLogic = source.GetChatLogicHandle();
+    _rootNode = source._rootNode;
+
+    source._image = NULL;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+
+    return *this;
+}
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
