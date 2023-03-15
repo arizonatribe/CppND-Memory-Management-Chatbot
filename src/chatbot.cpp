@@ -76,9 +76,6 @@ ChatBot::ChatBot(ChatBot &&source)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
 
-    if (this == &source)
-        return;
-
     _image = source.GetImageHandle();
     _chatLogic = source.GetChatLogicHandle();
     _rootNode = source._rootNode;
@@ -94,6 +91,9 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
 
     if (this == &source)
         return *this;
+
+    if(_image != NULL)
+        delete _image;
 
     _image = source.GetImageHandle();
     _chatLogic = source.GetChatLogicHandle();

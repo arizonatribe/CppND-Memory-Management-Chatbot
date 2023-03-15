@@ -11,6 +11,17 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
+    // delete all child edges
+    for (auto it = std::begin(_childEdges); it != std::end(_childEdges); ++it)
+    {
+        delete *it;
+    }
+
+    // clear list of parent edges
+    // (de-allocation is handled by their parent node)
+    _parentEdges.clear();
+
+    // TODO??
     delete _chatBot; 
 
     ////
