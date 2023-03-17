@@ -17,11 +17,8 @@ ChatLogic::ChatLogic()
     //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-    /* _chatBot = new ChatBot("../images/chatbot.png"); */
-
-    /* // add pointer to chatlogic so that chatbot answers can be passed on to the GUI */
-    /* _chatBot->SetChatLogicHandle(this); */
+    // removed the instantiation of the chatbot
+    // that is now created as a smart pointer and moved into the root node (in LoadAnswerGraphFromFile)
 
     ////
     //// EOF STUDENT CODE
@@ -32,20 +29,9 @@ ChatLogic::~ChatLogic()
     //// STUDENT CODE
     ////
 
-    // delete chatbot instance
-    /* delete _chatBot; */
-
-    // delete all nodes
-    /* for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it) */
-    /* { */
-    /*     delete *it; */
-    /* } */
-
-    // delete all edges
-    /* for (auto it = std::begin(_edges); it != std::end(_edges); ++it) */
-    /* { */
-    /*     delete *it; */
-    /* } */
+    // removed the deletion of the nodes and edges
+    // nodes are now a vector of unique pointers owned by this class
+    // and edges are owned by nodes
 
     ////
     //// EOF STUDENT CODE
@@ -161,10 +147,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
                             // create new edge
                             GraphEdge *edge = new GraphEdge(id);
-                            /* std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id); */
                             edge->SetChildNode((*childNode).get());
                             edge->SetParentNode((*parentNode).get());
-                            /* _edges.push_back(edge); */
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
@@ -216,7 +200,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
-    std::unique_ptr<ChatBot> smartbot = std::make_unique<ChatBot>("../images/chatbot.png");
+    auto smartbot = std::make_unique<ChatBot>("../images/chatbot.png");
 
     smartbot->SetChatLogicHandle(this);
     SetChatbotHandle(smartbot.get());

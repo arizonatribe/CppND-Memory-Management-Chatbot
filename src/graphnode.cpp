@@ -11,17 +11,7 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    // delete all child edges
-    for (auto it = std::begin(_childEdges); it != std::end(_childEdges); ++it)
-    {
-        delete *it;
-    }
-
-    // clear list of parent edges
-    // (de-allocation is handled by their parent node)
-    _parentEdges.clear();
-
-    /* delete _chatBot; */ 
+    // removed the deletion of the _chatBot
 
     ////
     //// EOF STUDENT CODE
@@ -39,7 +29,7 @@ void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
 
 void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
 {
-    _childEdges.push_back(edge);
+    _childEdges.push_back(std::unique_ptr<GraphEdge>(edge));
 }
 
 //// STUDENT CODE
@@ -62,7 +52,7 @@ GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
     //// STUDENT CODE
     ////
 
-    return _childEdges[index];
+    return _childEdges[index].get();
 
     ////
     //// EOF STUDENT CODE

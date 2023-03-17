@@ -42,6 +42,9 @@ ChatBot::~ChatBot()
     }
 }
 
+//// STUDENT CODE
+////
+
 // Implements a copy-ownership policy here of "exclusive ownership"
 ChatBot::ChatBot(ChatBot &source)
 {
@@ -105,6 +108,9 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
 
     return *this;
 }
+
+////
+//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
