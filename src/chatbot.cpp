@@ -50,13 +50,17 @@ ChatBot::ChatBot(ChatBot &source)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
 
-    _image = source.GetImageHandle();
-    _chatLogic = source.GetChatLogicHandle();
+    _image = source._image;
+    _currentNode = source._currentNode;
     _rootNode = source._rootNode;
+
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = NULL;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+    source._currentNode = nullptr;
 }
 
 // Implements a copy-ownership policy here of "exclusive ownership"
@@ -64,13 +68,17 @@ ChatBot &ChatBot::operator=(ChatBot &source)
 {
     std::cout << "ChatBot Copy Assignment" << std::endl;
 
-    _image = source.GetImageHandle();
-    _chatLogic = source.GetChatLogicHandle();
+    _image = source._image;
+    _currentNode = source._currentNode;
     _rootNode = source._rootNode;
+
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = NULL;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+    source._currentNode = nullptr;
 
     return *this;
 }
@@ -79,13 +87,17 @@ ChatBot::ChatBot(ChatBot &&source)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
 
-    _image = source.GetImageHandle();
-    _chatLogic = source.GetChatLogicHandle();
+    _image = source._image;
+    _currentNode = source._currentNode;
     _rootNode = source._rootNode;
+
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = NULL;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+    source._currentNode = nullptr;
 }
 
 ChatBot &ChatBot::operator=(ChatBot &&source)
@@ -98,13 +110,17 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
     if(_image != NULL)
         delete _image;
 
-    _image = source.GetImageHandle();
-    _chatLogic = source.GetChatLogicHandle();
+    _image = source._image;
+    _currentNode = source._currentNode;
     _rootNode = source._rootNode;
+
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = NULL;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+    source._currentNode = nullptr;
 
     return *this;
 }

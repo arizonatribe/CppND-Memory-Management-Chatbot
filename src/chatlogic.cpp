@@ -200,13 +200,13 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
-    auto smartbot = std::make_unique<ChatBot>("../images/chatbot.png");
+    ChatBot cbot("../images/chatbot.png");
 
-    smartbot->SetChatLogicHandle(this);
-    SetChatbotHandle(smartbot.get());
-    smartbot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(std::move(smartbot));
-    
+    cbot.SetChatLogicHandle(this);
+    SetChatbotHandle(&cbot);
+    cbot.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(std::move(cbot));
+
     ////
     //// EOF STUDENT CODE
 }
