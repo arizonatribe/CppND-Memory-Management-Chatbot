@@ -45,40 +45,32 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
-// Implements a copy-ownership policy here of "exclusive ownership"
+// Implements a copy-ownership policy here of "deep copy"
 ChatBot::ChatBot(ChatBot &source)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
 
-    _image = source._image;
-    _currentNode = source._currentNode;
-    _rootNode = source._rootNode;
+    _image = new wxBitmap();
+    *_image = *source._image;
+    *_currentNode = source._currentNode;
+    *_rootNode = source._rootNode;
 
-    _chatLogic = source._chatLogic;
+    *_chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
-
-    source._image = NULL;
-    source._chatLogic = nullptr;
-    source._rootNode = nullptr;
-    source._currentNode = nullptr;
 }
 
-// Implements a copy-ownership policy here of "exclusive ownership"
+// Implements a copy-ownership policy here of "deep copy"
 ChatBot &ChatBot::operator=(ChatBot &source)
 {
     std::cout << "ChatBot Copy Assignment" << std::endl;
 
-    _image = source._image;
-    _currentNode = source._currentNode;
-    _rootNode = source._rootNode;
+    _image = new wxBitmap();
+    *_image = *source._image;
+    *_currentNode = *source._currentNode;
+    *_rootNode = *source._rootNode;
 
-    _chatLogic = source._chatLogic;
+    *_chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
-
-    source._image = NULL;
-    source._chatLogic = nullptr;
-    source._rootNode = nullptr;
-    source._currentNode = nullptr;
 
     return *this;
 }
