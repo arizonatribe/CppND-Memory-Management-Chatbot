@@ -64,6 +64,9 @@ ChatBot &ChatBot::operator=(ChatBot &source)
 {
     std::cout << "ChatBot Copy Assignment" << std::endl;
 
+    if (this == &source)
+        return *this;
+
     _image = new wxBitmap();
     *_image = *source._image;
     _currentNode = source._currentNode;
