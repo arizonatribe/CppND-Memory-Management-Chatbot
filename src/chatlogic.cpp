@@ -12,31 +12,6 @@
 #include "chatlogic.h"
 
 
-ChatLogic::ChatLogic()
-{
-    //// STUDENT CODE
-    ////
-
-    // removed the instantiation of the chatbot
-    // that is now created as a smart pointer and moved into the root node (in LoadAnswerGraphFromFile)
-
-    ////
-    //// EOF STUDENT CODE
-}
-
-ChatLogic::~ChatLogic()
-{
-    //// STUDENT CODE
-    ////
-
-    // removed the deletion of the nodes and edges
-    // nodes are now a vector of unique pointers owned by this class
-    // and edges are owned by nodes
-
-    ////
-    //// EOF STUDENT CODE
-}
-
 template <typename T>
 void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T &element)
 {
